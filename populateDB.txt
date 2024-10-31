@@ -1,0 +1,89 @@
+# follow these commands to reset all dummy data
+# start in directory where your venv is located
+# you may have to modify some commands to match your system
+
+source .venv/bin/activate
+cd backend
+python manage.py shell
+
+from django.utils import timezone
+import pytz
+import datetime
+
+from uasams.models import User
+from uasams.models import Student
+from uasams.models import Application
+from uasams.models import Scholarship
+
+# delete current data
+User.objects.all().delete()
+Student.objects.all().delete()
+Application.objects.all().delete()
+Scholarship.objects.all().delete()
+
+# add User data
+# add student user
+a = User(userID=12345671, netID="richardolarez", username="richardolarez", password="264c8c381bf16c982a4e59b0dd4c6f7808c51a05f64c35db42cc78a2a72875bb", type="Student", sec1Q="What high school did you attend?", sec1A="0c9fb44dad5add2d8e213b1a16ef583306f770fc17b6fbabda2b4af64b94a5c7", sec2Q="What is the name of your first pet?", sec2A="8b517d84db1c8519856e5989bb0851bd7a48951a74018b86a5045e8d576c5751", firstName="Richardo", lastName="Larez", phone=5201234567, email="richardolarez@arizona.edu", listColumn=[])
+a.save()
+
+# add scholarship admin user
+a = User(userID=12345672, netID="amynikaido", username="amynikaido", password="8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918", type="Scholarship Administrator", sec1Q="What high school did you attend?", sec1A="8f418b1ec4c6027de9069e7df495ee0f7e6ef0774952d5add4cb1275f5b6f53c", sec2Q="In what city were you born?", sec2A="7ab63dfabb46ed1baad57939c710efd518590285b35c1fc7b0947e0ba5d7bbaa", firstName="Amy", lastName="Nikaido", phone=5201357909, email="amynikaido@arizona.edu", listColumn=[])
+a.save()
+
+# add applicant reviewer user
+a = User(userID=12345673, netID="marioweiler", username="marioweiler", password="2d70999ae1805e4bcef9b4ab3a4b827f578c61740f30076fcdc35c7ae7f586b3", type="Applicant Reviewer", sec1Q="What was the make of your first car?", sec1A="1aa4f3d6ea5b4c9305a7efe7d06b31e9763177119afb0604a237dd7fa36e7d82", sec2Q="What is the name of your first pet?", sec2A="fbf2144018584dc9bdc7eda2bacb9e2d6ae83222f322e0c223b9a8b8fba80f90", firstName="Mario", lastName="Weiler", phone=5201230987, email="marioweiler@arizona.edu", listColumn=[])
+a.save()
+
+# add scholarship provider user
+a = User(userID=12345674, netID="sharononeal", username="sharononeal", password="5c4c1964340aca5b65393bbe9d3249cdd71be26665b3320ad694f034f2743283", type="Scholarship Provider", sec1Q="What was the make of your first car?", sec1A="abf215e6042d9fee59096ad7cc3fc3226949b557d20f45e32e6a0f8235435525", sec2Q="What was the name of your elementary school?", sec2A="05170b497a1a784a96a26b390a6504e82aa457640992321325a39d9915f438b0", firstName="Sharon", lastName="ONeal", phone=5201112222, email="sharononeal@arizona.edu", listColumn=[])
+a.save()
+
+# add scholarship steward user
+a = User(userID=12345675, netID="javiercota", username="javiercota", password="76faa0295e4f0a68c6ab2dac601d308a7170260be3f245eb3b63a784e4a03824", type="Scholarship Fund Steward", sec1Q="What is your mother's maiden name?", sec1A="c2793b826cc96e7fe5bd695d00af187d2d9b5e4e0bfe7619c041d8f6f4972362", sec2Q="Wht is the name of your first pet?", sec2A="48735c4fae42d1501164976afec76730b9e5fe467f680bdd8daff4bb77674045", firstName="Javier", lastName="Cota", phone=5201212121, email="javiercota@arizona.edu", listColumn=[])
+a.save()
+
+# add engineering staff user
+a = User(userID=12345676, netID="evanmartin", username="evanmartin", password="1562206543da764123c21bd524674f0a8aaf49c8a89744c97352fe677f7e4006", type="Engineering Staff", sec1Q="What is your mother's maiden name?", sec1A="5d2bcc05436acca58aa5476effb626336c853cf8b5ee2544918b621f24c1b8eb", sec2Q="In what city were you born?", sec2A="0f44ff0e57441b8937e320bc33fbfad2bdb599053b3f2a09dd7a2708b780b917", firstName="Evan", lastName="Martin", phone=5200987654, email="evanmartin@arizona.edu", listColumn=[])
+a.save()
+
+# add IT staff user
+a = User(userID=12345677, netID="davidarmenta", username="davidarmenta", password="2ad8a7049d7c5511ac254f5f51fe70a046ebd884729056f0fe57f5160d467153", type="IT Staff", sec1Q="What is your mother's maiden name?", sec1A="9f542590100424c92a6ae40860f7017ac5dfbcff3cb49b36eace29b068e0d8e1", sec2Q="In what city were you born?", sec2A="f29245398096de20de00b79fadf85d2a64e02ef81e00c36e0bcd9624d23cfbdc", firstName="David", lastName="Armenta", phone=5204488662, email="davidarmenta@arizona.edu", listColumn=[])
+a.save()
+
+
+# add Student data
+a = Student(studentID=12345671, netID="richardolarez", pronouns="he/him", ethnicity="Hispanic", currentYear="Senior", gpa=3.00, majors="Software Engineering", minors="Electrical and Computer Engineering", personalStatement="Please pick me.", workExperience="Labs, Snap, DEF")
+a.save()
+
+
+# add Application data
+d = timezone.now()
+a = Application(applicationID=1, netID="richardolarez", scholarshipID=1, timestamp=d, firstName="Richardo", lastName="Larez", essay="Pick me please.", transcript="SFWE 402", recommendationLetter="Sharon likes me.", status="Submitted")
+a.save()
+
+
+# add Scholarship data
+# add Software Wildcats scholarship
+d = datetime.datetime(2024, 5, 1, 23, 59, 59, 999999, tzinfo=pytz.UTC)
+a = Scholarship(scholarshipID=1, scholarshipName="Software Wildcats", applications=[1], awardedApplications=[], awardAmount=1000, sponsorID="sharononeal", numberAvailable=5, majors="Software Engineering", minors="Software Engineering", gpa=3.00, deadline=d, otherRequirements="")
+a.save()
+
+# add Management Wildcats scholarship
+a = Scholarship(scholarshipID=2, scholarshipName="Management Wildcats", applications=[], awardedApplications=[], awardAmount=1000, sponsorID="sharononeal", numberAvailable=1, majors="Engineering Management", minors="Engineering Management", gpa=3.00, deadline=d, otherRequirements="")
+a.save()
+
+# add Systems Wildcats scholarship
+a = Scholarship(scholarshipID=3, scholarshipName="Systems Wildcats", applications=[], awardedApplications=[], awardAmount=1000, sponsorID="sharononeal", numberAvailable=1, majors="Systems Engineering", minors="Systems Engineering", gpa=3.00, deadline=d, otherRequirements="")
+a.save()
+
+# add Industrial Wildcats scholarship
+a = Scholarship(scholarshipID=4, scholarshipName="Industrial Wildcats", applications=[], awardedApplications=[], awardAmount=1000, sponsorID="sharononeal", numberAvailable=1, majors="Industrial Engineering", minors="Industrial Engineering", gpa=3.00, deadline=d, otherRequirements="")
+a.save()
+
+# add Electrical Wildcats scholarship
+a = Scholarship(scholarshipID=5, scholarshipName="Electrical Wildcats", applications=[], awardedApplications=[], awardAmount=1000, sponsorID="sharononeal", numberAvailable=1, majors="Electrical and Computer Engineering", minors="Electrical and Computer Engineering", gpa=3.00, deadline=d, otherRequirements="")
+a.save()
+
+# exit console
+quit()
+deactivate

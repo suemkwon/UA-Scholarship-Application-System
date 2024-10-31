@@ -1,0 +1,36 @@
+version: '3.9'
+
+
+services:
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+
+    ports:
+      - '3000:3000'
+
+    volumes:
+      - ./frontend:/app/frontend
+
+    depends_on:
+      - backend
+
+  backend: 
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+
+    environment:
+      - DB_HOST=sfwe-402.cnkwa4o2m0k1.us-east-2.rds.amazonaws.com
+      - DB_PORT=5432
+      - DB_NAME=sfwe402database
+      - DB_USER=palworld
+      - DB_PASSWORD=pedropedropedro
+
+    ports:
+      - '8000:8000'
+
+    volumes:
+      - ./backend:/app/backend

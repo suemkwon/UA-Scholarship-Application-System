@@ -1,5 +1,5 @@
 # University of Arizona Scholarship Management System
-Toolstack:
+## Toolstack:
 React
 Django REST
 Postgresql
